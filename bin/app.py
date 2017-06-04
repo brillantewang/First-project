@@ -1,7 +1,8 @@
 import web
 
 urls = (
-	'/', 'Index'
+	'/', 'Index',
+	'/hello', 'Hello'	
 )
 
 app = web.application(urls, globals())
@@ -12,11 +13,12 @@ class Index(object):
 	def GET(self):
 		return render.hello_form()
 
+class Hello(object):
 	def POST(self):
 
 		form = web.input(name="Nobody", greet="Hello")
 		greeting = "%s, %s" % (form.greet, form.name)
 		return render.index(greeting = greeting)
 
-	if __name__ == "__main__":
+if __name__ == "__main__":
 		app.run()
